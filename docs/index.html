@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG 科普文档导航</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --primary: #2563eb;
+      --border: #dbe3f0;
+      --shadow: 0 12px 30px rgba(37, 99, 235, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(180deg, #eff6ff 0%, var(--bg) 240px);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+    }
+    .hero, .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+    }
+    .hero {
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+    h1, h2 { margin-top: 0; }
+    .lead {
+      color: var(--muted);
+      max-width: 760px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      padding: 24px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      margin-bottom: 12px;
+    }
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a:hover { text-decoration: underline; }
+    ul { padding-left: 20px; }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>RAG / LLM 科普文档</h1>
+      <p class="lead">
+        这里整理了三篇面向业务和技术读者的 HTML 科普文章：第一篇解释什么是大语言模型 API 以及它和网页对话的区别；
+        第二篇从企业应用视角介绍 RAG、Agentic RAG 与 Multi-Agent RAG；
+        第三篇则基于仓库中的 PDF 资料，进一步展开一个适合企业落地的 RAG 开发与部署方案。
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="tag">文档一</div>
+        <h2>LLM API 是什么？</h2>
+        <p>理解大模型 API 的输入、输出、鉴权、计费方式，以及它与网页端聊天产品在使用方式和控制能力上的区别。</p>
+        <a href="./llm-api-vs-web-chat.html">阅读文章</a>
+      </article>
+
+      <article class="card">
+        <div class="tag">文档二</div>
+        <h2>企业视角看 RAG 体系</h2>
+        <p>对比 RAG、Agentic RAG、Multi-Agent RAG 的适用场景、治理难度和业务价值，帮助企业选择合适路线。</p>
+        <a href="./enterprise-rag-overview.html">阅读文章</a>
+      </article>
+
+      <article class="card">
+        <div class="tag">文档三</div>
+        <h2>RAG 开发部署方案详解</h2>
+        <p>基于 PDF 中“本地 Chroma + 云端通义千问”的思路，进一步拆解架构、流程、部署、运维和安全实践。</p>
+        <a href="./rag-solution-deployment-plan.html">阅读文章</a>
+      </article>
+    </section>
+
+    <section class="card" style="margin-top:24px;">
+      <h2>阅读建议</h2>
+      <ul>
+        <li>如果你是第一次接触企业级 AI 应用，建议先看文档一，再看文档二。</li>
+        <li>如果你已经明确要做知识库问答或内部助手，可以重点阅读文档三。</li>
+        <li>文档三中的方案特别适合“预算有限、数据敏感、希望尽快落地”的团队。</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
