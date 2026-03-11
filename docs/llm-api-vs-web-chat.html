@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM 大语言模型 API 是什么？</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --paper: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --primary: #2563eb;
+      --accent: #eff6ff;
+      --border: #dbeafe;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+    }
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+    article {
+      background: var(--paper);
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06);
+    }
+    h1, h2, h3 { line-height: 1.35; }
+    h1 { margin-top: 0; }
+    .eyebrow {
+      display: inline-block;
+      padding: 5px 12px;
+      background: var(--accent);
+      color: var(--primary);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .lead, .muted { color: var(--muted); }
+    .callout, table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 24px;
+      background: #fbfdff;
+      border: 1px solid #dbe3f0;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .callout {
+      padding: 18px 20px;
+    }
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    code {
+      background: #eff6ff;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <article>
+      <p class="eyebrow">文档一 · 科普文章</p>
+      <h1>LLM 大语言模型的 API 是什么？它和网页端对话有什么区别？</h1>
+      <p class="lead">
+        许多人第一次接触大语言模型，是在网页上和一个聊天机器人对话。但对企业来说，真正有价值的往往不是“打开网页去聊天”，
+        而是把大模型能力以 <strong>API</strong> 的形式接入自己的系统、流程和产品里。API 不是另一个聊天窗口，它更像是一条可编排、可监控、可集成的智能能力通道。
+      </p>
+
+      <h2>一、什么是 LLM API？</h2>
+      <p>
+        API 是“应用程序接口”。当我们说 <strong>LLM API</strong> 时，指的是开发者通过标准化接口，把文本、图片或工具调用请求发送给大模型，
+        再接收模型返回结果的方式。它不像人直接在网页里提问，而是让软件去“自动提问、自动收结果、自动处理后续动作”。
+      </p>
+      <div class="callout">
+        <strong>可以把它理解成：</strong>网页聊天像是“你亲自去柜台办业务”，LLM API 则像是“你的业务系统和智能柜台之间有一根专线”。
+      </div>
+
+      <h3>LLM API 常见输入输出</h3>
+      <ul>
+        <li><strong>输入：</strong>提示词、上下文、历史对话、系统角色设定、工具调用参数。</li>
+        <li><strong>控制项：</strong>模型名称、温度、最大输出长度、响应格式、超时时间。</li>
+        <li><strong>输出：</strong>回答文本、结构化 JSON、工具调用指令、引用信息、使用量统计。</li>
+      </ul>
+
+      <h2>二、网页端对话是什么？</h2>
+      <p>
+        网页端对话是模型供应商为普通用户提供的现成产品。你打开网页、登录账号、输入问题、阅读答案即可。
+        它强调的是“开箱即用的体验”，适合个人试用、快速验证和临时问答。
+      </p>
+      <p>
+        但企业往往需要更深度的控制：例如把模型嵌入客服系统、OA 审批、知识库助手、数据分析平台，或要求输出固定 JSON 供程序继续处理。
+        这时，仅靠网页对话通常不够。
+      </p>
+
+      <h2>三、LLM API 和网页端聊天，到底差在哪？</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>维度</th>
+            <th>LLM API</th>
+            <th>网页端对话</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>使用者</td>
+            <td>开发者、企业系统、自动化流程</td>
+            <td>终端用户、个人试用者</td>
+          </tr>
+          <tr>
+            <td>接入方式</td>
+            <td>代码调用，通常通过 HTTP / SDK</td>
+            <td>浏览器页面手动输入</td>
+          </tr>
+          <tr>
+            <td>控制能力</td>
+            <td>可精细控制参数、上下文、工具调用、格式</td>
+            <td>通常由平台预设，用户控制有限</td>
+          </tr>
+          <tr>
+            <td>系统集成</td>
+            <td>可嵌入企业业务系统与工作流</td>
+            <td>更适合单人会话，不易自动化串联</td>
+          </tr>
+          <tr>
+            <td>可观测性</td>
+            <td>可记录日志、调用量、延迟、失败率</td>
+            <td>以会话体验为主，运维侧数据通常有限</td>
+          </tr>
+          <tr>
+            <td>典型目标</td>
+            <td>“让系统会思考、会生成、会调用”</td>
+            <td>“让人能直接问问题”</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>四、企业为什么更关心 API？</h2>
+      <p>因为 API 能把大模型从“一个聪明的网页”变成“企业数字化能力的一部分”。</p>
+      <ul>
+        <li><strong>可接入业务流程：</strong>例如自动总结会议纪要、辅助生成招投标材料、回答内部制度问题。</li>
+        <li><strong>可结合私有数据：</strong>与企业知识库、CRM、工单系统、报表系统打通。</li>
+        <li><strong>可治理：</strong>便于加入鉴权、审计、脱敏、限流和成本控制。</li>
+        <li><strong>可产品化：</strong>可以做成客服助手、销售助手、研发 Copilot，而不是停留在“谁去网页上问一下”。</li>
+      </ul>
+
+      <h2>五、使用 LLM API 时，企业要关注什么？</h2>
+      <ul>
+        <li><strong>安全：</strong>API Key 管理、敏感信息脱敏、数据传输加密。</li>
+        <li><strong>成本：</strong>按调用量或 Token 计费，需要控制上下文长度与调用频率。</li>
+        <li><strong>稳定性：</strong>超时重试、降级策略、多模型切换。</li>
+        <li><strong>准确性：</strong>不能只靠“裸问”，很多场景需要接入 RAG 才能减少幻觉。</li>
+      </ul>
+
+      <h2>六、一个简单的企业理解方式</h2>
+      <p>
+        如果把大模型看作“会思考的引擎”，那么网页聊天只是一个现成驾驶舱，而 API 则是发动机的标准接口。
+        企业真正想做的，通常不是一直坐在别人提供的驾驶舱里，而是把这台发动机装进自己的汽车、生产线和服务系统中。
+      </p>
+
+      <div class="callout">
+        <strong>一句话总结：</strong>
+        网页端对话解决的是“人怎么方便地用模型”，LLM API 解决的是“企业系统怎么稳定、可控地调用模型”。
+      </div>
+
+      <p class="muted">
+        返回文档导航：
+        <a href="./index.html">RAG 科普文档首页</a>
+      </p>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企业应用视角下的 RAG、Agentic RAG 与 Multi-Agent RAG</title>
+  <style>
+    :root {
+      --bg: #f3f4f6;
+      --paper: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --primary: #0f766e;
+      --soft: #ecfeff;
+      --border: #cffafe;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.8;
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+    article {
+      background: var(--paper);
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+      padding: 32px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.05);
+    }
+    h1, h2, h3 { line-height: 1.35; }
+    .eyebrow {
+      display: inline-block;
+      padding: 5px 12px;
+      background: var(--soft);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .lead, .muted { color: var(--muted); }
+    .box {
+      background: #f9fafb;
+      border-left: 4px solid var(--primary);
+      padding: 16px 18px;
+      margin: 18px 0;
+      border-radius: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 24px;
+      background: #fbffff;
+      border: 1px solid #d1fae5;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+    th, td {
+      padding: 14px 16px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <main>
+    <article>
+      <p class="eyebrow">文档二 · 企业应用视角</p>
+      <h1>RAG、Agentic RAG、Multi-Agent RAG 是什么？企业应该怎么选？</h1>
+      <p class="lead">
+        当企业希望把大模型用于知识问答、员工助手、客服自动化或复杂流程处理时，常会遇到三个越来越热的概念：
+        <strong>RAG</strong>、<strong>Agentic RAG</strong> 和 <strong>Multi-Agent RAG</strong>。
+        它们并不是谁替代谁，而是能力层级逐步增强、治理难度也逐步上升的三种落地形态。
+      </p>
+
+      <h2>一、RAG：给模型“临场补课”</h2>
+      <p>
+        RAG 是 Retrieval-Augmented Generation，中文常译为“检索增强生成”。它的核心思想很简单：
+        <strong>先从企业知识库里找资料，再让大模型基于这些资料作答</strong>。
+      </p>
+      <div class="box">
+        适合解决的典型问题：制度问答、产品手册问答、售后知识助手、内部知识库查询、销售资料检索。
+      </div>
+      <p>从企业角度看，RAG 最大的价值有三点：</p>
+      <ul>
+        <li><strong>降低幻觉：</strong>回答尽量基于已检索到的企业资料，而不是完全靠模型“自由发挥”。</li>
+        <li><strong>知识可更新：</strong>更新知识库即可，不必重新训练大模型。</li>
+        <li><strong>成本可控：</strong>比微调整个大模型更轻量，更适合快速上线。</li>
+      </ul>
+
+      <h2>二、Agentic RAG：不只会查资料，还会规划动作</h2>
+      <p>
+        Agentic RAG 可以理解为“带有 Agent 能力的 RAG”。系统不仅会检索知识，还会根据任务目标决定下一步动作：
+        是继续追问、调用工具、改写查询、换一种检索策略，还是把答案整理成某种结构化输出。
+      </p>
+      <p>
+        它更像一个“会思考任务步骤的知识型助手”，而不只是一个“问一次、答一次”的检索问答机器人。
+      </p>
+      <ul>
+        <li><strong>更适合多步任务：</strong>例如“先读制度，再生成审批建议，再列出风险点”。</li>
+        <li><strong>更适合复杂检索：</strong>第一次没找到，就自动换关键词、换搜索范围、换工具。</li>
+        <li><strong>更适合工具协同：</strong>例如查知识库后，再调用工单系统、ERP 或日程系统。</li>
+      </ul>
+      <div class="box">
+        企业价值不只在“答得对”，还在“能不能真的把事情往前推进”。这正是 Agentic RAG 的意义。
+      </div>
+
+      <h2>三、Multi-Agent RAG：让多个智能体协作完成任务</h2>
+      <p>
+        Multi-Agent RAG 则是更进一步：不是一个 Agent 来完成全部工作，而是让多个角色分工协作。
+        比如一个 Agent 负责理解问题，一个负责检索，一个负责校验事实，一个负责合成最终答案，甚至还有一个负责合规审核。
+      </p>
+      <p>
+        对大型企业来说，这种模式的吸引力在于它更接近真实组织协作：不同角色负责不同能力模块，更利于治理、扩展与职责划分。
+      </p>
+
+      <h2>四、三种形态的企业对比</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>维度</th>
+            <th>RAG</th>
+            <th>Agentic RAG</th>
+            <th>Multi-Agent RAG</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>核心目标</td>
+            <td>基于资料回答问题</td>
+            <td>围绕任务动态规划与调用</td>
+            <td>多角色协作完成复杂任务</td>
+          </tr>
+          <tr>
+            <td>系统复杂度</td>
+            <td>低到中</td>
+            <td>中到高</td>
+            <td>高</td>
+          </tr>
+          <tr>
+            <td>适合阶段</td>
+            <td>企业 AI 落地起步期</td>
+            <td>需要自动化闭环的增长期</td>
+            <td>跨部门、复杂流程的成熟期</td>
+          </tr>
+          <tr>
+            <td>治理要求</td>
+            <td>知识库治理为主</td>
+            <td>增加任务编排和工具权限治理</td>
+            <td>增加角色边界、通信和审计治理</td>
+          </tr>
+          <tr>
+            <td>ROI 特征</td>
+            <td>上线快、见效快</td>
+            <td>流程效率提升明显</td>
+            <td>天花板高，但建设成本也更高</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>五、站在企业应用层面，应该怎么选？</h2>
+      <h3>1. 先从 RAG 起步</h3>
+      <p>
+        对大多数企业来说，第一步不应该追逐“多智能体”概念，而是先把知识入口、权限体系、文档清洗和问答效果做好。
+        如果基础知识库还不完整，直接上复杂 Agent 往往会让问题更难定位。
+      </p>
+
+      <h3>2. 当你需要“能执行任务”，再上 Agentic RAG</h3>
+      <p>
+        如果企业已经不满足于“回答问题”，而是希望系统自动完成查询、判断、汇总、生成或调用工具，那么 Agentic RAG 更合适。
+        它适用于客服分诊、投标助手、合同审阅辅助、售前方案生成等场景。
+      </p>
+
+      <h3>3. 当组织规模和流程复杂度都很高，再考虑 Multi-Agent</h3>
+      <p>
+        如果业务跨越多个部门、多个知识源和多个系统，并且希望不同模块具备相对独立的职责，Multi-Agent RAG 才值得投入。
+        它不是“更高级的噱头”，而是一种更适合复杂组织结构的系统设计。
+      </p>
+
+      <h2>六、企业最容易忽视的现实问题</h2>
+      <ul>
+        <li><strong>不是模型最重要，而是知识治理最重要：</strong>文档老旧、权限混乱、命名不规范，会直接拖垮效果。</li>
+        <li><strong>不是 Agent 越多越好：</strong>角色越多，成本、延迟、调试难度和不确定性也越高。</li>
+        <li><strong>不能只看演示效果：</strong>真正落地要看可审计、可维护、可扩展，以及出现错误时能否追踪。</li>
+      </ul>
+
+      <div class="box">
+        <strong>一句建议：</strong>先把 RAG 做成一个稳定、可信、能引用知识的企业能力，再根据任务自动化深度，逐步演进到 Agentic RAG 或 Multi-Agent RAG。
+      </div>
+
+      <p class="muted">
+        返回文档导航：
+        <a href="./index.html">RAG 科普文档首页</a>
+      </p>
+    </article>
+  </main>
+</body>
+</html>
